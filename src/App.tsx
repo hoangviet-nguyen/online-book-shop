@@ -1,29 +1,17 @@
 import './App.css'
-import Header from './components/Header'
-import SalesEntry from './components/SalesEntry'
+import Home from './sites/Home'
+import Product from './sites/Product'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+const routes = createBrowserRouter([
+  {path: "/", element:<Home/>},
+  {path: "/product", element: <Product/>}
+])
 
 function App() {
-  const createSalesRow = (amount: number) => {
-    return (
-      <div className='flex space-x-4 m-2'>
-        {[...Array(amount)].map(() => {
-          return (
-            <SalesEntry/>
-          )
-        })}
-      </div>
-    )
-  }
-
-
   return (
     <>
-    <Header/>
-    <div className='flex flex-col items-center justify-center h-screen'>
-        {createSalesRow(6)}
-        {createSalesRow(6)}
-    </div>
+      <RouterProvider router={routes}/>
     </>
   )
 }
